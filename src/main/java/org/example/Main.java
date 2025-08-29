@@ -5,16 +5,17 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         ReplyService service = new ReplyService();
-        String [] inputs = {"hi", "hello", "how are you", "i need help", "can you help me with my account",
-        "thanks", "bye", "what is your name", "random test", " ", null};
-        for (ReplyType type : ReplyType.values()) {
-            System.out.println("=== Testing type: " + type + " ===");
-            for (String in : inputs) {
-                String label = (in == null ? "null" : "\"" + in + "\"");
-                String reply = service.reply(in, type);
-                System.out.println("Input: " + label + " → Reply: " + reply);
-            }
-            System.out.println();
-        }
+
+        String reply1 = service.reply("hi", ReplyType.FORMAL);
+        System.out.println(reply1);  // Hello. How may I assist you today?
+
+        String reply2 = service.reply("hello", ReplyType.FRIENDLY);
+        System.out.println(reply2);  // Hi! 👋 What’s up?
+
+        String reply3 = service.reply("random", ReplyType.CONCISE);
+        System.out.println(reply3);  // Please clarify.
+
+        String reply4 = service.reply("   ", ReplyType.FORMAL);
+        System.out.println(reply4);  // Please say something.
     }
 }
